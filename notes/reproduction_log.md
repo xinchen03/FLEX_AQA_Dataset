@@ -22,16 +22,18 @@
    - Skeleton-only + RGB teacher distill (ablative)
    - **Decision deferred until forward pass analysis and ablation experiments on real data.**
 
-### Critical Check: model_rgb.pth — ✅ RESOLVED (2026-06-18)
-- **Status: RESOLVED** — copied from `D:/projects/MTL_CoRe.pth` (179MB)
-- Located at `./MTL-AQA/model_rgb.pth` as expected by config
-- Structure: Full CoRe training checkpoint w/ keys `[base_model, regressor, optimizer, ...]`
-  - `base_model` = I3D state_dict (344 keys), has `module.` prefix (from DataParallel)
-- Source: CoRe project (yuxumin/CoRe)
-- ⚠️ **Potential issue**: `load_pretrain()` in `models/Backbone.py:13` does `torch.load(ckpt)` then passes entire dict to `self.backbone.load_state_dict()`. But the checkpoint top-level is NOT an I3D state dict — it's `{base_model, regressor, ...}`. Need to extract `ckpt['base_model']` and strip `module.` prefix first. Compare with `resume_train()` in `builder.py:108-109` which correctly does this.
-- ⚠️ Also: `load_pretrain` uses `weights_only=True` which fails on numpy scalars in older checkpoints. PyTorch 2.4.1 needs `weights_only=False` or `add_safe_globals`.
-- **Fix needed before training**: patch `Backbone.py:load_pretrain` to extract `base_model` key and strip `module.`
-- ⚠️ NOT tracked by git (covered by `*.pth` in .gitignore)
+### Critical Check: model_rgb.pth — ✅ FIXED & VALIDATED (2026-06-18)
+- **Source**: Copied from `D:/projects/MTL_CoRe.pth` (179MB, CoRe project by yuxumin/CoRe)
+- **Location**: `./MTL-AQA/model_rgb.pth` (NOT git-tracked)
+- **Structure**: Full CoRe training checkpoint — `base_model` = I3D state_dict (344 keys), keys have `module.backbone.` prefix (DataParallel + attribute nesting)
+- **Fix applied**: Patched `models/Backbone.py:load_pretrain()` (commit `260f0db`):
+  - Detects full checkpoint → extracts `ckpt['base_model']`
+  - Strips `module.` prefix (DataParallel)
+  - Strips `backbone.` prefix (I3D_backbone attribute)
+  - Uses `strict=False` for safe partial loading
+  - Reports missing/unexpected key counts for diagnostics
+- **Validation result**: Missing=0, Unexpected=0 — perfect match
+- **Weights not tracked by git** (covered by `*.pth` in .gitignore)
 
 ### Hardcoded Debug Paths Found
 - `models/emg_encoder.py:77`: `/data/YH/FLEX-AQA/FLEX-AQA3/EMG/A01/199/EMG.csv`
