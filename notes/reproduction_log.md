@@ -22,12 +22,16 @@
    - Skeleton-only + RGB teacher distill (ablative)
    - **Decision deferred until forward pass analysis and ablation experiments on real data.**
 
-### Critical Check: model_rgb.pth
-- **Status: MISSING** — `./MTL-AQA/model_rgb.pth` does not exist in repo
-- MTL-AQA/ directory only contains `info/` and `MTL_tool/`
-- This file is the Kinetics-400 pretrained I3D weight, REQUIRED for training
-- **Action needed**: Obtain from FLEX authors, MTL-AQA original repo, or download from official I3D source
-- Config reference: `Seven_CoRe.yaml` line 10: `pretrained_i3d_weight: './MTL-AQA/model_rgb.pth'`
+### Critical Check: model_rgb.pth — ✅ RESOLVED (2026-06-18)
+- **Status: RESOLVED** — copied from `D:/projects/MTL_CoRe.pth` (179MB)
+- Located at `./MTL-AQA/model_rgb.pth` as expected by config
+- Structure: Full CoRe training checkpoint w/ keys `[base_model, regressor, optimizer, ...]`
+  - `base_model` = I3D state_dict (344 keys), has `module.` prefix (from DataParallel)
+- Source: CoRe project (yuxumin/CoRe)
+- ⚠️ **Potential issue**: `load_pretrain()` in `models/Backbone.py:13` does `torch.load(ckpt)` then passes entire dict to `self.backbone.load_state_dict()`. But the checkpoint top-level is NOT an I3D state dict — it's `{base_model, regressor, ...}`. Need to extract `ckpt['base_model']` and strip `module.` prefix first. Compare with `resume_train()` in `builder.py:108-109` which correctly does this.
+- ⚠️ Also: `load_pretrain` uses `weights_only=True` which fails on numpy scalars in older checkpoints. PyTorch 2.4.1 needs `weights_only=False` or `add_safe_globals`.
+- **Fix needed before training**: patch `Backbone.py:load_pretrain` to extract `base_model` key and strip `module.`
+- ⚠️ NOT tracked by git (covered by `*.pth` in .gitignore)
 
 ### Hardcoded Debug Paths Found
 - `models/emg_encoder.py:77`: `/data/YH/FLEX-AQA/FLEX-AQA3/EMG/A01/199/EMG.csv`
