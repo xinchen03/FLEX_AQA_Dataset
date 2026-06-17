@@ -1,0 +1,77 @@
+Bottleneck @ file:///C:/b/abs_f05kqh7yvj/croot/bottleneck_1707864273291/work
+Brotli @ file:///C:/b/abs_3d36mno480/croot/brotli-split_1714483178642/work
+certifi @ file:///C:/b/abs_1fw_exq1si/croot/certifi_1725551736618/work/certifi
+charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
+colorama @ file:///C:/b/abs_a9ozq0l032/croot/colorama_1672387194846/work
+contourpy @ file:///C:/b/abs_d5rpy288vc/croots/recipe/contourpy_1663827418189/work
+cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
+factor_analyzer==0.5.1
+fastapi==0.95.2
+filelock @ file:///C:/b/abs_f2gie28u58/croot/filelock_1700591233643/work
+fonttools @ file:///C:/b/abs_f47gnfqnx0/croot/fonttools_1713551644747/work
+gmpy2 @ file:///C:/ci/gmpy2_1645456279018/work
+h5py @ file:///C:/b/abs_c4ha_1xv14/croot/h5py_1715094776210/work
+idna @ file:///C:/b/abs_aad84bnnw5/croot/idna_1714398896795/work
+imageio==2.35.1
+importlib_resources @ file:///C:/b/abs_e9f8_0_2dq/croot/importlib_resources-suite_1720641112288/work
+Jinja2 @ file:///C:/b/abs_92fccttino/croot/jinja2_1716993447201/work
+joblib @ file:///C:/b/abs_f4b98l6lgk/croot/joblib_1718217224240/work
+kiwisolver @ file:///C:/b/abs_88mdhvtahm/croot/kiwisolver_1672387921783/work
+krippendorff==0.6.0
+lazy_loader==0.4
+MarkupSafe @ file:///C:/b/abs_ecfdqh67b_/croot/markupsafe_1704206030535/work
+matplotlib @ file:///C:/b/abs_085jhivdha/croot/matplotlib-suite_1693812524572/work
+mkl-fft @ file:///C:/b/abs_19i1y8ykas/croot/mkl_fft_1695058226480/work
+mkl-random @ file:///C:/b/abs_edwkj1_o69/croot/mkl_random_1695059866750/work
+mkl-service==2.4.0
+mpmath @ file:///C:/b/abs_7833jrbiox/croot/mpmath_1690848321154/work
+networkx @ file:///C:/b/abs_e6gi1go5op/croot/networkx_1690562046966/work
+numexpr @ file:///C:/b/abs_afm0oewmmt/croot/numexpr_1683221839116/work
+numpy @ file:///C:/Users/dev-admin/mkl/numpy_and_numpy_base_1682982345978/work
+opencv-python==4.10.0
+opencv-python-headless==4.10.0
+packaging @ file:///C:/b/abs_c3vlh0z4jw/croot/packaging_1720101866539/work
+pandas @ file:///C:/miniconda3/conda-bld/pandas_1692299636855/work
+pandas_flavor==0.7.0
+pillow @ file:///C:/b/abs_32o8er3uqp/croot/pillow_1721059447598/work
+pingouin==0.5.5
+platformdirs @ file:///C:/b/abs_b6z_yqw_ii/croot/platformdirs_1692205479426/work
+ply==3.11
+pooch @ file:///C:/b/abs_a8nmng7d_x/croot/pooch_1695850149827/work
+pyparsing @ file:///C:/Users/BUILDE~1/AppData/Local/Temp/abs_7f_7lba6rl/croots/recipe/pyparsing_1661452540662/work
+PyQt5==5.15.10
+PyQt5-sip @ file:///C:/b/abs_c0pi2mimq3/croot/pyqt-split_1698769125270/work/pyqt_sip
+PySocks @ file:///C:/ci/pysocks_1605287845585/work
+python-dateutil @ file:///C:/b/abs_3au_koqnbs/croot/python-dateutil_1716495777160/work
+python-multipart==0.0.6
+pytz @ file:///C:/b/abs_6ap4tsz1ox/croot/pytz_1713974360290/work
+PyWavelets @ file:///C:/b/abs_a8r4b1511a/croot/pywavelets_1670425185881/work
+PyYAML @ file:///C:/b/abs_14xkfs39bx/croot/pyyaml_1728657968772/work
+requests @ file:///C:/b/abs_9frifg92q2/croot/requests_1721410901096/work
+scikit-image==0.21.0
+scikit-learn @ file:///C:/b/abs_daon7wm2p4/croot/scikit-learn_1694788586973/work
+scipy==1.10.1
+sip @ file:///C:/b/abs_edevan3fce/croot/sip_1698675983372/work
+six @ file:///tmp/build/80754af9/six_1644875935023/work
+starlette==0.27.0
+sympy @ file:///C:/b/abs_4ay0cgwu2w/croot/sympy_1734629241647/work
+tabulate==0.9.0
+threadpoolctl @ file:///C:/b/abs_def0dwqlft/croot/threadpoolctl_1719407816649/work
+tifffile==2023.7.10
+tomli @ file:///C:/Windows/TEMP/abs_ac109f85-a7b3-4b4d-bcfd-52622eceddf0hy332ojo/croots/recipe/tomli_1657175513137/work
+torch==2.4.1
+torchaudio==2.4.1
+torchvideotransforms @ git+https://github.com/hassony2/torch_videovision.git@785a810d1df2ccab6901fb98b38e358433e7b17a
+torchvision==0.20.0
+tornado @ file:///C:/b/abs_7bua0304mj/croot/tornado_1718740122405/work
+tqdm @ file:///C:/b/abs_77wju137gk/croot/tqdm_1724853945787/work
+typing_extensions @ file:///C:/b/abs_0as9mdbkfl/croot/typing_extensions_1715268906610/work
+tzdata @ file:///home/task_177806041933677/croot/python-tzdata_1778060738968/work
+unicodedata2 @ file:///C:/b/abs_b6apldlg7y/croot/unicodedata2_1713212998255/work
+urllib3 @ file:///C:/b/abs_9a_f8h_bn2/croot/urllib3_1727769836930/work
+uvicorn==0.23.2
+volcengine-python-sdk==5.0.24
+win-inet-pton @ file:///C:/ci/win_inet_pton_1605306167264/work
+xarray==2023.1.0
+zipp @ file:///C:/b/abs_021kqswk3k/croot/zipp_1729012371206/work
+

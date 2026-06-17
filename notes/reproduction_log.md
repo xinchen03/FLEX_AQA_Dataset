@@ -1,5 +1,46 @@
 # FLEX Reproduction Log
 
+## 2026-06-18 — Corrections & Final Checks
+
+### Corrections to 06-17 Notes
+
+1. **Modality terminology**: The "4 modalities" are more accurately described as:
+   - **3 modality types**: RGB (双视角 View-1 + View-2), 3D Skeleton, EMG
+   - **4 input branches** in the model: I3D(View-1) + I3D(View-2) + STGCN(Skeleton) + EMG_Encoder(EMG)
+   - When discussing lightweight models, clarify: "保留双模态 RGB+Skeleton" or "保留单视角 RGB+Skeleton"
+
+2. **Seven_cls range**: `1-20` for FLEX (A01-A20), NOT `1-6`.
+   - `0` = all 20 FLEX classes (full dataset)
+   - `1-20` = single class (A01-A20 respectively)
+   - The help text "1-6 for AQA-7" is a leftover from the older MTL-AQA benchmark
+   - Verified in `utils/parser.py:13`: `choices=[0,1,...,20]`
+
+3. **Lightweight Student plan is preliminary** — multiple options exist:
+   - RGB-View1 + Skeleton (minimal, best for deployment)
+   - RGB-View1 + RGB-View2 + Skeleton (drops only EMG, closer to baseline)
+   - RGB-only + skeleton distill (most aggressive)
+   - Skeleton-only + RGB teacher distill (ablative)
+   - **Decision deferred until forward pass analysis and ablation experiments on real data.**
+
+### Critical Check: model_rgb.pth
+- **Status: MISSING** — `./MTL-AQA/model_rgb.pth` does not exist in repo
+- MTL-AQA/ directory only contains `info/` and `MTL_tool/`
+- This file is the Kinetics-400 pretrained I3D weight, REQUIRED for training
+- **Action needed**: Obtain from FLEX authors, MTL-AQA original repo, or download from official I3D source
+- Config reference: `Seven_CoRe.yaml` line 10: `pretrained_i3d_weight: './MTL-AQA/model_rgb.pth'`
+
+### Hardcoded Debug Paths Found
+- `models/emg_encoder.py:77`: `/data/YH/FLEX-AQA/FLEX-AQA3/EMG/A01/199/EMG.csv`
+- `models/stgcn_encoder.py:102`: `/data/YH/FLEX-AQA/FLEX-AQA3/Skeleton/Skeleton/A01/099/skeleton_points.csv`
+- These appear to be debug/test artifacts; actual data loading uses dataset classes
+
+### Environment Records Exported
+- `notes/conda_list_py38.txt` — full conda package list
+- `notes/pip_freeze_py38.txt` — pip package list
+- Use to restore environment if broken later
+
+---
+
 ## 2026-06-17 — Environment Setup + Pre-Data Inspection Complete
 
 ### Repository
