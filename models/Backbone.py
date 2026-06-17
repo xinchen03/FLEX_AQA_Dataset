@@ -10,8 +10,36 @@ class I3D_backbone(nn.Module):
         self.backbone = I3D(num_classes = I3D_class, modality = 'rgb', dropout_prob = 0.5)
         
     def load_pretrain(self, I3D_ckpt_path):
-        self.backbone.load_state_dict(torch.load(I3D_ckpt_path, weights_only=True))
-        print('loading ckpt done')
+        print('Loading pretrained I3D weight from: %s' % I3D_ckpt_path)
+        ckpt = torch.load(I3D_ckpt_path, map_location='cpu', weights_only=False)
+
+        # Support both pure I3D state_dict and full training checkpoint
+        if isinstance(ckpt, dict) and 'base_model' in ckpt:
+            state_dict = ckpt['base_model']
+            print('Detected full CoRe checkpoint; using ckpt[base_model]')
+        else:
+            state_dict = ckpt
+            print('Detected pure state_dict checkpoint')
+
+        # Strip DataParallel prefix and CoRe backbone prefix
+        from collections import OrderedDict
+        new_state_dict = OrderedDict()
+        for k, v in state_dict.items():
+            new_k = k
+            if new_k.startswith('module.'):
+                new_k = new_k[len('module.'):]
+            if new_k.startswith('backbone.'):
+                new_k = new_k[len('backbone.'):]
+            new_state_dict[new_k] = v
+
+        missing, unexpected = self.backbone.load_state_dict(new_state_dict, strict=False)
+        print('Loaded pretrained weights (strict=False)')
+        print('  Missing keys: %d' % len(missing))
+        print('  Unexpected keys: %d' % len(unexpected))
+        if len(unexpected) > 0:
+            print('  Unexpected examples: %s' % str(unexpected[:3]))
+        if len(missing) > 0:
+            print('  Missing examples: %s' % str(missing[:3]))
 
     def get_feature_dim(self):
         return self.backbone.get_logits_dim()
