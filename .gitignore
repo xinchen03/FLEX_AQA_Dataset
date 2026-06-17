@@ -1,0 +1,45 @@
+# FLEX data / private data
+data/
+datasets/
+FLEX/
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.pkl
+*.npy
+*.npz
+*.h5
+*.mp4
+*.avi
+*.csv
+*.json
+
+# checkpoints / logs / results
+checkpoints/
+weights/
+runs/
+logs/
+logs_test/
+results/
+outputs/
+wandb/
+tensorboard/
+*.pth
+*.pt
+*.ckpt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE / system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Windows env files (not needed for Linux training)
+environment_win_cpu.yml
+environment_windows.yml

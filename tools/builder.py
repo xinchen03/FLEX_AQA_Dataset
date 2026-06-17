@@ -7,6 +7,9 @@ import torch
 # optimizer
 import torch.optim as optim
 import traceback
+# torchvideotransforms must be imported BEFORE any model that triggers torchvision
+# to avoid DLL conflicts between torchvision and OpenCV on Windows
+from torchvideotransforms import video_transforms, volume_transforms
 # model
 from models import I3D_backbone
 from models import RegressTree
@@ -16,7 +19,6 @@ from models import FeatureCompressor
 # utils
 from utils.misc import import_class
 from utils.Group_helper import Group_helper
-from torchvideotransforms import video_transforms, volume_transforms
 
 
 def get_video_trans():
